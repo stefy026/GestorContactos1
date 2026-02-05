@@ -40,8 +40,11 @@ namespace GestorContactos1
                 }
                 if (listaContactos.Any(c => c.NumeroTelefono == telefono))
                 {
-                    throw new ArgumentException("Ya existe un contacto con este número de teléfono.");
-                }
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"\n  Error: Ya existe un contacto con el teléfono {telefono}.");
+                Console.ResetColor();
+                return;
+            }
 
                 Contacto nuevoContacto = new Contacto(contadorId++, nombre, telefono, email, direccion);
                 listaContactos.Add(nuevoContacto);
