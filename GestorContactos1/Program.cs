@@ -38,9 +38,12 @@ namespace GestorContactos1
                     case "5":
                         EliminarContacto(gestor);
                         break;
-                    case "6":
-                        salir = true;
-                        MostrarDespedida();
+                        Console.Write("\n ¿Está seguro que desea salir? (S/N): ");
+                        if (Console.ReadLine().ToUpper() == "S")
+                        {
+                            salir = true;
+                            MostrarDespedida();
+                        }
                         break;
                     default:
                         Console.WriteLine("\n Opción inválida. Intente nuevamente.");
