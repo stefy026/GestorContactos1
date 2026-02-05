@@ -34,11 +34,17 @@ namespace GestorContactos1
                     throw new ArgumentException("El nombre no puede estar vacío");
                 }
 
-                if (string.IsNullOrWhiteSpace(telefono))
-                {
-                    throw new ArgumentException("El número de teléfono no puede estar vacío");
-                }
-                if (listaContactos.Any(c => c.NumeroTelefono == telefono))
+            if (string.IsNullOrWhiteSpace(telefono))
+            {
+                throw new ArgumentException("El número de teléfono no puede estar vacío");
+            }
+
+            if (!string.IsNullOrWhiteSpace(email) && !Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                throw new ArgumentException("El formato del correo electrónico es incorrecto.");
+            }
+
+            if (listaContactos.Any(c => c.NumeroTelefono == telefono))
                 {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"\n  Error: Ya existe un contacto con el teléfono {telefono}.");
@@ -81,7 +87,7 @@ namespace GestorContactos1
 
                 if (resultados.Count == 0)
                 {
-                    Console.WriteLine("\n⚠ No se encontraron contactos con ese nombre.");
+                    Console.WriteLine("\n No se encontraron contactos con ese nombre.");
                     return;
                 }
 
